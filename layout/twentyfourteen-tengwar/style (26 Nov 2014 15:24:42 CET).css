@@ -1,0 +1,792 @@
+@charset "UTF-8";
+/*
+Theme Name: Twenty Fourteen Tengwar
+Theme URI: http://wordpress.org/themes/twentyfourteen , http://schrybwys.ch
+Author: the WordPress team, j. 'mach' wust
+Author URI: http://wordpress.org/ , http://schrybwys.ch
+Description: In 2014, our default theme lets you create a responsive magazine website with a sleek, modern design. Feature your favorite homepage content in either a grid or a slider. Use the three widget areas to customize your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. Creating a magazine website with WordPress has never been easier.
+Version: 2014-06-02 (forked from Version 1.1 of Twenty Fourteen)
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
+Text Domain: twentyfourteen
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+
+
+/*Copyright 2011-2013 j. 'mach' wust. This work is licensed under the Creative Commons Attribution-Share Alike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.*/
+
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700,700italic&subset=latin");
+@font-face { /*IE will only recognize this rule*/
+	font-family: "FreeMonoTengwar";
+	src: url("tengwar-files/FreeMonoTengwar-embedding.eot");
+}
+@font-face { /*browsers other than IE will use this rule*/
+	font-family: "FreeMonoTengwar";
+	src: local("FreeMonoTengwar"),
+	local("FreeMonoTengwar-embedding"),
+	url("tengwar-files/FreeMonoTengwar-embedding.ttf") format("TrueType"); /*the format specification will cause buggy IE to ignore this*/
+}
+.tengwar {
+	font-family: "FreeMonoTengwar";
+	font-size: 120%;
+	font-style: normal !important;
+	font-weight: normal !important;
+	line-height: 18px;
+/*	text-rendering: optimizeLegibility; /*this is a Gecko-specific property; it causes the CSS not to validate any more*/
+}
+
+
+/*OVERALL STYLE*/
+
+body {
+	color: black;
+	font-family: Ubuntu, FreeMonoTengwar, sans;
+	font-size: 18px;
+	font-weight: 400;
+}
+h1, h2, h3, th, b, dt {
+	font-weight: 700;
+}
+pre, code {
+	font-family: monospace;
+}
+body,
+#nav_menu-2 .current-menu-item a:hover {
+	background-color: #9ae269;
+	background-image: url(tengwar-files/background-dark.png);
+	background-attachment: fixed;
+	background-position: left top;
+}
+#main_box,
+#primary,
+#toc,
+#navigation a:hover,
+#nav_menu-2 a:hover,
+table {
+	background-color: white;
+	background-image: url(tengwar-files/background-light.png);
+	background-attachment: fixed;
+	background-position: left top;
+}
+#intro,
+#outro,
+span.definition>span,
+header.page-header,
+table .borders,
+#respond
+{
+	background-color: #E5E5E5;
+	background-image: url(tengwar-files/background-middle.png);
+	background-attachment: fixed;
+	background-position: left top;
+}
+a {
+	text-decoration: none;
+	color: blue;
+}
+.qtrans_language_chooser .active a,
+.current-menu-item a,
+.qtrans_language_chooser .active a:hover,
+.current-menu-item a:hover
+{
+	text-decoration: none;
+	color: black;
+	cursor: default;
+}
+a:hover, a:focus {
+	text-decoration: underline;
+}
+.qtrans_language_chooser .active a:hover,
+.qtrans_language_chooser .active a:focus,
+.current-menu-item a:hover,
+.current-menu-item a:focus
+{
+	text-decoration: none;
+}
+a:visited {
+	color: purple;
+}
+.qtrans_language_chooser .active a:visited,
+.current-menu-item a:visited
+{
+	color: black;
+}
+
+/*a.external:after {
+	content:" [Ã¢Â†Âª]";
+	vertical-align: text-top;
+	font-size: x-small;
+}*/
+/*a.anchor:after {
+	content:" [^]";
+	vertical-align: text-top;
+	font-size: x-small;
+}*/
+#jump_box {
+	display: none;
+}
+#main_box, #primary {
+	width: 70%;
+	max-width: 1500px;
+	position: absolute;
+	top: 0px;
+	right: 25%;
+	min-height: 100%;
+}
+#other_box, #secondary {
+	position: fixed;
+	width: 25%;
+	height: 100%;
+	top: 0px;
+	right: 0px;
+	overflow: auto; /*There must be no auto-overflow for hover drop down menus*/
+}
+
+
+/* H1 AND TOC */
+
+#intro>* {
+	margin: 0px;
+}
+#intro dl {
+	margin: 0 0 0 0;
+}
+#intro p {
+	font-size: 75%;
+	color: gray;
+	text-align: right;
+	margin: 2% 0;
+}
+#intro,
+header.page-header {
+	padding: 5%;
+}
+#toc {
+/*	padding-top: 0px;*/
+}
+#intro h1,
+header.page-header h1 {
+	font-size: xx-large
+}
+#intro h1,
+header.page-header h1,
+#toc dl {
+/*	margin: 0px;*/
+}
+#toc {
+	position: relative;
+	padding: 0px 5px 5px 0px;
+}
+#intro h1+#toc {
+	margin-top: 6%;
+}
+#toc dt {
+	padding: 5px 0px 0px 0px;
+	margin: 0px 0px 5px 5px;
+	font-size: 100%;
+}
+#toc {
+	counter-reset: toc-h2counter;
+}
+#toc dd>a:before {
+	content: counter(toc-h2counter);
+	counter-increment: toc-h2counter;
+	position: absolute;
+	left: 2em;
+}
+#toc dd {
+	counter-reset: toc-h3counter;
+	margin-left: 3em;
+}
+#toc li>a:before {
+	content: counter(toc-h2counter) "." counter(toc-h3counter);
+	counter-increment: toc-h3counter;
+	position: absolute;
+	left: 4em;
+}
+#toc ul {
+	list-style-type: none;
+	padding-left: 2.8em;
+	margin: 0px;
+}
+/*#toc {
+	position: fixed;
+	width: 25%;
+	right: 0px;
+	bottom: 0px;
+	max-height: 40%;
+	overflow: auto;
+}*/
+
+
+/*OTHER-BOX*/
+
+#languages dt {
+	display: none;
+}
+#languages, .qtrans_language_chooser {
+	text-align: right;
+	list-style-type: none;
+	text-align: right;
+	margin: 5px 5px 0px auto;
+	font-size: 75%;
+/*	height: 5em;
+	width: 11.5em;
+	overflow: auto;
+	border: 1px solid black;*/
+}
+#languages dd, .qtrans_language_chooser .active a {
+	font-style: italic;
+}
+#languages dd a {
+	font-style: normal;
+}
+#navigation,
+#nav_menu-2 {
+	margin-top: 5px;
+}
+#navigation dt,
+#nav_menu-2 ul.sub-menu li {
+	display: none;
+}
+#nav_menu-2 ul.sub-menu li.current-menu-item {
+	display: block;
+}
+#navigation dd,
+#navigation ul,
+#nav_menu-2 li,
+#nav_menu-2 ul {
+	list-style-type: none;
+	margin: 0px;
+}
+#nav_menu-2>div>ul {
+	padding: 0px;
+}
+#navigation ul,
+#nav_menu-2 ul.sub-menu {
+	padding-left: 2em;
+}
+#navigation li,
+#nav_menu-2 ul.sub-menu li {
+	font-size: 80%;
+}
+#navigation span:before,
+#navigation li:before,
+#nav_menu-2 .current-menu-item:before,
+#nav_menu-2 .current-menu-parent a:before
+{
+	content: ">";
+	position: absolute;
+	left: 0px;
+}
+#nav_menu-2 .current-menu-parent a:before
+{
+	left: 5px;
+}
+#navigation a,
+#nav_menu-2>div>ul>li>a,
+#navigation dd>span {
+	display: block;
+	padding-left: 1em;
+}
+#nav_menu-2 .current-menu-item a {
+	display: inline;
+}
+#navigation span:before,
+#navigation li:before,
+#nav_menu-2 li:before,
+#navigation a,
+#nav_menu-2>div>ul>li>a,
+#navigation dd>span {
+	margin: 0px 5px;
+}
+#navigation a:hover,
+#navigation a:focus,
+#nav_menu-2 a:hover,
+#nav_menu-2 a:focus {
+	text-decoration: none;
+}
+
+
+/*HEADINGS AND CONTENT*/
+
+#text,
+article>header,
+article>div.entry-summary,
+div#comments,
+div#archives
+{
+	max-width: 600px;
+	margin: 0px auto;
+	position: relative;
+}
+#text
+{
+	padding: 0.5em 5px 0.5em 5px;
+}
+#text
+{
+	counter-reset: h2counter;
+}
+article>header,
+article>div.entry-summary,
+div#comments
+{
+	padding: 0px 5px 0px 5px;
+}
+#outro>p {
+	font-size: 75%;
+	color: gray;
+	margin: 0px;
+	padding: 15px 5%;
+	overflow-y: auto;
+}
+#text h2:before, h2#archive:before {
+	content: counter(h2counter);
+	counter-increment: h2counter;
+	position: absolute;
+	left: 5px;
+}
+#text h2,
+h2#archive
+{
+	margin-left: 1em;
+	counter-reset: h3counter;
+}
+#text h3:before {
+	content: counter(h2counter) "." counter(h3counter);
+	counter-increment: h3counter;
+	position: absolute;
+	left: 5px;
+}
+#text h3 {
+	margin-left: 1.8em;
+}
+#text h2:first-child {
+	margin-top: 0px;
+}
+
+
+/*TABLES*/
+
+table {
+	border-collapse:collapse;
+	border: none;
+	position: relative;
+	margin: 0.75em 0px;
+	z-index: 1;
+	overflow: auto;
+}
+th, td {
+	border: none;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	padding: 5px;
+}
+th:first-child, td:first-child, td.attached_to_previous {
+	border-left: none;
+}
+th[rowspan]:first-child, td[rowspan]:first-child {
+	border-right: 1px solid black;
+}
+tr:first-child th, tr:first-child td, tr.attached_to_previous th, tr.attached_to_previous td {
+	border-top: none;
+}
+caption {
+	text-align: left;
+	white-space: nowrap;
+	margin: 0.5em 0px;
+}
+td ul {
+	margin: 0px;
+	padding-left: 1em;
+}
+td>span.tengwar {
+	font-size: 200%;
+	line-height: 110%;
+}
+table.center td {
+	text-align: center;
+}
+table.sign_table {
+	text-align: center;
+	max-width: 66%;
+	width: 66%;
+}
+table.alphabet_table tr.attached_to_previous td {
+	padding-left: 2em;
+}
+table *.borders {
+	border: 1px solid black;
+}
+
+
+/*FOOTNOTE COUNTERS*/
+
+sup {
+	margin-left: 0.1em;
+	vertical-align: 100%;
+	line-height: 40%;
+	font-size: 80%
+}
+
+
+/*DEFINITIONS AND NOTES*/
+
+.no_font_embedding_note {
+	float:right;
+	width: 30%;
+	font-size: 75%;
+	padding: 3px;
+	margin-left: 5px;
+	border: 1px solid red;
+	overflow: visible;
+}
+span.definition {
+	border-bottom: 1px dotted black;
+}
+span.definition, span.tengwar {
+	position: relative;
+}
+span.definition>span, span.definition>span span {
+	display: none;
+}
+span.definition:hover>span, span.definition:focus>span, span.definition>span:focus {
+	display: block;
+	position: absolute;
+	font-size: 80%;
+	font-style:italic;
+	top: 1.2em;
+	left: 1.2em;
+	padding: 3px;
+	box-shadow: -2px 2px 5px black;
+	z-index: 3;
+	width: 15em;
+}
+span.definition {
+	cursor: help;
+}
+
+
+/*OTHER CONTENT ELEMENTS*/
+
+.marginal, a.still_dead, a.still_dead:visited {
+	color: silver;
+	font-family: inherit;
+}
+i.tengwar, i.ipa, i.lit {
+	font-style: normal;
+}
+dt {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+#text li, #text dd, #text p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#text ol ol {
+	list-style-type: lower-alpha;
+}
+#text>div>img {
+	display: block;
+	margin: auto;
+}
+#text>div, #text>pre {
+	border: 1px solid black;
+	overflow: auto;
+}
+
+
+/*COMMENT FORM*/
+
+.comment-form label
+{
+	display: block;
+}
+button, input, select, textarea
+{
+	box-sizing: border-box;
+	vertical-align: baseline;
+	max-width: 100%;
+}
+textarea
+{
+	width: 100%;
+}
+.required
+{
+	color: #c0392b;
+}
+.comment-reply-title small a:before
+{
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font: normal 16px/1 Genericons;
+	vertical-align: text-bottom;
+}
+.comment-reply-title small a {
+	float: right;
+	height: 24px;
+	overflow: hidden;
+	width: 24px;
+}
+.comment-reply-title small a:hover:before {
+	text-decoration: underline;
+	color:gray;
+}
+
+.comment-reply-title small a:before {
+	content: "\f405";
+	font-size: 32px;
+}
+#respond
+{
+	padding: 5px;
+	margin: 1em 0;
+}
+#comments li
+{
+	border-top: 1px solid black;
+	padding-top: 1em;
+	margin-top: 1em;
+}
+#comments>ol>li:first-child
+{
+	border-top: none;
+	padding-top: inherit;
+	margin-top: inherit;
+}
+#comments ol
+{
+	list-style-type: none;
+}
+#comments>ol
+{
+	padding-left: 0px;
+}
+#respond h3,
+#respond p.form-submit
+{
+	margin: 0px;
+}
+#content>article>header
+{
+	border-top: 1px solid black;
+}
+#content>article:first-child>header,
+#content>header:first-child+article>header
+{
+	border: none;
+}
+
+
+@media screen and (max-width: 632px)
+{
+	html, body, #page, #main, #secondary aside
+	{
+		padding: 0px;
+		margin: 0px;
+	}
+	#main_box, #primary
+	{
+		width: 90%;
+		position: static;
+		margin-top: 2.4em;
+		margin-left: 5%;
+		min-height: 0;
+		padding-bottom: 5px;
+	}
+	.qtrans_language_chooser
+	{
+		list-style-type: none;
+		text-align: left;
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+	.qtrans_language_chooser li
+	{
+		float: left;
+		margin: 5px;
+	}
+	#nav_menu-2 .current-menu-item:before,
+	#nav_menu-2 .current-menu-parent a:before,
+	.current-menu-ancestor:before,
+	#nav_menu-2 ul ul
+	{
+		display: none;
+	}
+	#nav_menu-2>div>ul>li,
+	#nav_menu-2>div>ul>li>a,
+	#nav_menu-2 li:before
+	{
+		margin: 0px;
+	}
+	#nav_menu-2>div>ul>li>a
+	{
+	}
+	#nav_menu-2>div>ul>li>a,
+	#nav_menu-2 .current-menu-item a
+	{
+		display: block;
+		padding: 0px 5px;
+		line-height: 1em;
+		overflow: hidden;
+		height: 100%;
+	}
+	#nav_menu-2>div>ul>li,
+	#nav_menu-2 .current-menu-item
+	{
+		height: 1.2em;
+	}
+	#nav_menu-2 a:hover,
+	#nav_menu-2 a:focus,
+	#nav_menu-2 .current-menu-ancestor a:hover,
+	#nav_menu-2 .current-menu-ancestor a:focus,
+	#nav_menu-2 .current-menu-parent a:hover,
+	#nav_menu-2 .current-menu-parent a:hover
+	{
+		background-color: white;
+		background-image: url(tengwar-files/background-light.png);
+		background-attachment: fixed;
+		background-position: left top;
+	}
+	#nav_menu-2 .current-menu-item a,
+	#nav_menu-2 .current-menu-item a:hover,
+	#nav_menu-2 .current-menu-item a:focus,
+	#nav_menu-2 .current-menu-ancestor a,
+	#nav_menu-2>div>ul>li.menu-item-home.current-menu-item,
+	#nav_menu-2 .current-menu-parent a,
+	#nav_menu-2 .current-menu-parent a
+	{
+		background-color: #E5E5E5;
+		background-image: url(tengwar-files/background-middle.png);
+		background-attachment: fixed;
+		background-position: left top;
+	}
+	#nav_menu-2 li
+	{
+		float: left;
+	}
+	#nav_menu-2>div>ul>li.menu-item-home
+	{
+		width: 1.2em;
+		height: 1.2em;
+		overflow: /*hidden*/;
+	}
+	#nav_menu-2>div>ul>li.menu-item-home>a
+	{
+		height: 100%;
+		padding: 0;
+        text-indent: 2em;
+        white-space: nowrap;
+	}
+	.menu-item-home a:before
+	{
+		-webkit-font-smoothing: antialiased;
+		content: url(http://schrybwys.ch/favicon.ico);
+		display: inline-block;
+        text-indent: -2em
+	}
+	.menu-item-home a:before
+    {
+		display: inline-block;
+		content: 'H';
+        text-indent: -2em;
+        background-color: 1px solid red;
+	}
+	#secondary
+	{
+		position: static;
+	}
+	#nav_menu-2
+	{
+		position: absolute;
+		top: 1.2em;
+		left: 5%;
+	}
+}
+@media screen and (max-width: 450px)
+{
+	#other_box, #secondary
+	{
+		width: 100%;
+		position: static;
+	}
+	.qtrans_language_chooser
+	{
+		list-style-type: none;
+		text-align: left;
+		margin: 0px;
+		padding: 0px;
+		position: static;
+		float: right;
+		height: auto;
+	}
+}
+@media screen and (max-width: 335px)
+{
+	#nav_menu-2>div>ul>li.menu-item-home,
+	#nav_menu-2>div>ul>li,
+	#nav_menu-2 .current-menu-item
+	{
+		height: 1em;
+	}
+	#nav_menu-2>div>ul>li.menu-item-home>a,
+	#nav_menu-2>div>ul>li>a,
+	#nav_menu-2 .current-menu-item a
+	{
+		font-size: .8em;
+		line-height: 1.1em;
+	}
+	#nav_menu-2>div>ul>li.menu-item-home>a
+	{
+        text-indent: 0;
+        white-space: normal;
+	}
+	.menu-item-home a:before
+	{
+		display: none;
+	}
+	#nav_menu-2>div>ul>li.menu-item-home>a
+	{
+		height: 100%;
+		padding: 0px 5px;
+	}
+	#main_box, #primary
+	{
+		margin-top: 2em;
+	}
+	#nav_menu-2
+	{
+		position: absolute;
+		top: 0px;
+		left: 5%;
+		width: 90%;
+	}
+	#nav_menu-2 li,
+	#nav_menu-2>div>ul>li.menu-item-home
+	{
+		width: 50%;
+		
+	}
+}
+@media screen and (max-width: 260px)
+{
+	#main_box, #primary
+	{
+		margin-top: 4em;
+	}
+	#nav_menu-2 li,
+	#nav_menu-2>div>ul>li.menu-item-home
+	{
+		width: 100%;
+	}
+}

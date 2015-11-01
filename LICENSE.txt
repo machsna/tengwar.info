@@ -1,0 +1,6 @@
+License of the tengwar.info repository
+======================================
+
+This repository is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+Please note that for you to use J. R. R. Tolkien’s tengwar script in a commercial production you may need permission from the Tolkien Estate.
