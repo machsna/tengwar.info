@@ -745,60 +745,37 @@ i.tengwar, i.ipa, i.lit {
 
 /*TRANSITIONS, ANIMATIONS*/
 
-h2, h3,
-article header, section#archives h2 {
-	transition: background .5s;
-}
-h2:target, h3:target,
-article:target header, section#archives:target h2 {
-    animation: highlight-target-header 1s 1;
-	background: hsla(30,100%,65%,.33);
-}
 article:target {
     animation: none;
 }
-ol#notes>li{
-	transition: border-left-color .5s;
-}
-ol#notes>li:target{
-	animation: highlight-target-li 1s 1;
-	border-left-color: hsla(30,100%,65%,.33);
-}
-/*h2, h3, article header, section#archives:target h2, ol#notes>li:target::before {
-	transition: text-shadow 1s;
-}
 h2:target, h3:target, article:target header, section#archives:target h2, ol#notes>li:target::before {
+    animation: highlight-target-header 1s 1;
     text-shadow:
-    	1px 1px 1rem orange,
-    	1px -1px 1rem orange,
-    	-1px 1px 1rem orange,
-    	-1px -1px 1rem orange;
+    	1px -1px 1rem cornflowerblue,
+    	-1px 1px 1rem cornflowerblue;
 	overflow-x: visible;
-}*/
+}
 
 @keyframes highlight-target-header {
 	0% {
-		background: transparent;
+    text-shadow:
+    	0 0 0 cornflowerblue,
+    	0 0 0 cornflowerblue;
 	}
 	33% {
-		background: hsla(30,100%,65%,1);
+    text-shadow:
+    	10px -10px 1.5rem cornflowerblue,
+    	-10px 10px 1.5rem cornflowerblue;
 	}
 	100% {
-		background: hsla(30,100%,65%,.33);
+    text-shadow:
+    	0 0 .8rem cornflowerblue,
+    	0 0 .8rem cornflowerblue;
 	}
 }
 
-@keyframes highlight-target-li {
-	0% {
-		border-left-color: transparent;
-	}
-	33% {
-		border-left-color: hsla(30,100%,65%,1);
-	}
-	100% {
-		border-left-color: hsla(30,100%,65%,.33);
-	}
-}
+
+/*RESPONSIVE DESIGN*/
 
 @media screen and (max-width: 880px)
 {
